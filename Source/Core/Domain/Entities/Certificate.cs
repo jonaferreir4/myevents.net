@@ -5,7 +5,7 @@ namespace Domain.Entities;
     {
 
       public  string Name { get; private set; }
-      public  TimeOnly TotalTime { get; private set; }
+      public  TimeSpan TotalTime { get; private set; }
 
       public int ActivityId { get; private set; }
       public Activity Activity { get; private set;  }
