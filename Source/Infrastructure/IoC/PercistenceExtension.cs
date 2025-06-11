@@ -23,6 +23,7 @@ using Application.UseCases.Inscription.Delete;
 using Domain.Contracts.Data.Repositories.Attendance;
 using Application.UseCases.Attendance.Register;
 using Application.UseCases.Attendance.Delete;
+using Domain.Contracts.Data.Repositories.Certificate;
 
 namespace IoC;
     public static class PercistenceExtension
@@ -76,11 +77,15 @@ namespace IoC;
         services.AddScoped<IDeleteInscriptionUC, DeleteInscriptionUC>();
 
 
-        // Attendance Respositories and Use Cases
+        // Attendance Repositories and Use Cases
         services.AddScoped<IAttendanceReadRepository, AttendanceRepository>();
         services.AddScoped<IAttendanceWriteRepository, AttendanceRepository>();
         services.AddScoped<IRegisterAttendanceUC, RegisterAttendanceUC>();
         services.AddScoped<IDeleteAttendanceUC, DeleteAttendanceUC>();
+
+        // Certificate Repositories and Use Cases       
+        services.AddScoped<ICertificateReadRepository, CertificateRepository>();
+        services.AddScoped<ICertificateWriteRepository, CertificateRepository>();
         
 
     }
