@@ -10,6 +10,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Activity> Activities { get; set; }
     public DbSet<Inscription> Inscriptions { get; set; }
     public DbSet<Attendance> Attendances { get; set; }
+    public DbSet<Certificate> Certificates { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
