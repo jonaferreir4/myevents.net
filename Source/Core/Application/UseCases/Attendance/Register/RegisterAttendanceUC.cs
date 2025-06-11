@@ -30,9 +30,7 @@ public class RegisterAttendanceUC(
        var activity = await readAtvRepo.FindByIdAsync(activityId)
         ?? throw new KeyNotFoundException($"Activity with ID {activityId} not found.");
 
-        _ = await readAtvRepo.FindByIdAsync(activityId)
-            ?? throw new KeyNotFoundException($"Event with ID {activityId} not found.");
-
+        
         _ = await readUserRepo.FindByIdAsync(userId)
             ?? throw new KeyNotFoundException($"User with ID {userId} not found.");
 
