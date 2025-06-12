@@ -10,6 +10,6 @@ namespace Application.UseCases.Activity.Register;
         TimeOnly StartTime,
         TimeOnly EndTime,
         int MaxParticipants,
-        TimeOnly CertificationHours,
+        TimeSpan CertificationHours,
         long SpeakerId
     );                      

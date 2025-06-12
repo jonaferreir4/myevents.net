@@ -10,5 +10,5 @@ namespace Application.UseCases.Activity.Update;
         TimeOnly StartTime,
         TimeOnly EndTime,
         int MaxParticipants,
-        TimeOnly CertificationHours
+        TimeSpan CertificationHours
     );                      

@@ -9,12 +9,20 @@ namespace DAO.Repositories;
 public class CertificateRepository(AppDbContext _context) : BaseRepository<Certificate>(_context),
 ICertificateReadRepository, ICertificateWriteRepository
 {
-    public async  Task<IList<Certificate>> FindAllAsync(int wrapperId)
+    public async Task<IList<Certificate>> FindAllAsync(int wrapperId)
     {
         return await _context.Certificates.ToListAsync();
     }
 
-    public  async Task<IEnumerable<Certificate>> FindByActivityIdAsync(long activityId)
+    public async Task<Certificate?> FindByIdWithRelationsAsync(long id)
+    {
+        return await _context.Certificates
+            .Include(c => c.User)
+            .Include(c => c.Activity)
+            .FirstOrDefaultAsync(c => c.Id == id);
+    }
+
+    public async Task<IEnumerable<Certificate>> FindByActivityIdAsync(long activityId)
     {
         return await _context.Certificates
         .Where(c => c.ActivityId == activityId)
@@ -29,7 +37,7 @@ ICertificateReadRepository, ICertificateWriteRepository
     public async Task<Certificate?> FindByIdAsync(int entityId, int wrapperId)
     {
         Certificate? certificate = await _context.Certificates.FindAsync(entityId, wrapperId);
-            return certificate;
+        return certificate;
     }
 
     public async Task<Certificate?> FindByNameAsync(string name)
@@ -37,7 +45,7 @@ ICertificateReadRepository, ICertificateWriteRepository
         return await _context.Set<Certificate>().FirstOrDefaultAsync(e => e.Name == name);
     }
 
-    public  async Task<Certificate?> FindByUserIdAndActivityIdAsync(long userId, long activityId)
+    public async Task<Certificate?> FindByUserIdAndActivityIdAsync(long userId, long activityId)
     {
         return await _context.Certificates
         .FirstOrDefaultAsync(i => i.UserId == userId && i.ActivityId == activityId);

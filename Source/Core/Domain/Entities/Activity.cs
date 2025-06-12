@@ -11,7 +11,7 @@ public sealed class Activity : BaseEntity
     public TimeOnly StartTime { get; set; }
     public TimeOnly EndTime { get; set; }
     public int MaxParticipants { get; set; }
-    public TimeOnly CertificationHours { get; set; }
+    public TimeSpan CertificationHours { get; set; }
 
 
     public long EventId { get; set; }
@@ -31,7 +31,7 @@ public sealed class Activity : BaseEntity
         TimeOnly startTime,
         TimeOnly endTime,
         int maxParticipants,
-        TimeOnly certificationHours,
+        TimeSpan certificationHours,
         long eventId,
         long speakerId
     )

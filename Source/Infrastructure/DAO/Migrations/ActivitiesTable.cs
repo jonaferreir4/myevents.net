@@ -8,6 +8,8 @@ public class ActivitiesTable : Migration
 {
     public override void Down()
     {
+        Delete.ForeignKey("FK_Activities_Events").OnTable("Activities");
+        Delete.ForeignKey("FK_Activities_Users_Speaker").OnTable("Activities");
         Delete.Table("Activities");
     }
 

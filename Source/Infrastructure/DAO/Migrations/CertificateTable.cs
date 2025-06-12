@@ -1,4 +1,3 @@
-using System.Data;
 using FluentMigrator;
 
 namespace DAO.Migrations;
@@ -17,21 +16,21 @@ public class CertificateTable : Migration
         Create.Table("Certificates")
         .WithColumn("Id").AsInt32().PrimaryKey().Identity()
         .WithColumn("Name").AsString(255).NotNullable()
-        .WithColumn("TotalTime").AsCustom("TIME").NotNullable()
+        .WithColumn("TotalHours").AsDecimal(5, 2).NotNullable()
+        .WithColumn("IssueDate").AsDateTime().NotNullable()
+        .WithColumn("VerificationCode").AsString(12).NotNullable().Unique()
         .WithColumn("ActivityId").AsInt32().NotNullable()
         .WithColumn("UserId").AsInt32().NotNullable()
         .WithColumn("CreatedAt").AsDateTime().NotNullable()
         .WithColumn("UpdatedAt").AsDateTime().Nullable();
 
         Create.ForeignKey("FK_Certificates_Activities")
-            .FromTable("Certificates").ForeignColumn("ActivityId")
-            .ToTable("Activities").PrimaryColumn("Id")
-            .OnDelete(Rule.Cascade);
+      .FromTable("Certificates").ForeignColumn("ActivityId")
+      .ToTable("Activities").PrimaryColumn("Id").OnDelete(System.Data.Rule.Cascade);
 
         Create.ForeignKey("FK_Certificates_Users")
             .FromTable("Certificates").ForeignColumn("UserId")
-            .ToTable("Users").PrimaryColumn("Id")
-            .OnDelete(Rule.Cascade);
+            .ToTable("Users").PrimaryColumn("Id").OnDelete(System.Data.Rule.Cascade);
 
         Create.Index("IX_Certificates_User_Activity")
             .OnTable("Certificates")
