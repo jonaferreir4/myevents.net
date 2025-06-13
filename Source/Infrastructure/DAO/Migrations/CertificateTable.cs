@@ -21,8 +21,9 @@ public class CertificateTable : Migration
         .WithColumn("VerificationCode").AsString(12).NotNullable().Unique()
         .WithColumn("ActivityId").AsInt32().NotNullable()
         .WithColumn("UserId").AsInt32().NotNullable()
-        .WithColumn("CreatedAt").AsDateTime().NotNullable()
-        .WithColumn("UpdatedAt").AsDateTime().Nullable();
+        .WithColumn("IsSpeakerCertificate").AsBoolean().NotNullable().WithDefaultValue(false)
+        .WithColumn("CreatedOn").AsDateTime().NotNullable()
+        .WithColumn("UpdatedOn").AsDateTime().Nullable();
 
         Create.ForeignKey("FK_Certificates_Activities")
       .FromTable("Certificates").ForeignColumn("ActivityId")

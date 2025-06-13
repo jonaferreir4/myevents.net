@@ -1,54 +1,28 @@
-using Domain.Contracts.Data.Repositories.Certificate;
+using Application.UseCases.Certificate.Register;
+using Domain.Contracts.Data.Repositories.Attendance;
 using Domain.Contracts.Data.Services;
 using Library.Utils.Authorization;
-using Domain.Contracts.Data.Repositories.User;
-using Domain.Contracts.Data.Repositories.Activity;
-using Domain.Contracts.Data.Repositories.Inscription;
-using Domain.Contracts.Data.Repositories.Event;
+
 
 namespace Application.UseCases.Certificate.Register;
-
 public class RegisterCertificateUC(
-    ICertificateWriteRepository  writeRepo,
-    ICertificateReadRepository readRepo,
-    IEventReadRepository eventReadRepository,
-    IActivityReadRepository readAtvRepo,
-    IUserReadRepository readUserRepo,
-    IInscriptionReadRepository readIncriptionRepo,
-
-    IUnitOfWork unitOfWork,
+    IAttendanceReadRepository attendanceReadRepo,
+    ICertificateGeneratorService certificateGeneratorService,
     IHttpContextAccessor httpContextAccessor
-
 ) : IRegisterCertificateUC
 {
-
-
     public async Task<RegisterCertificateResponse> RegisterCertificate(long activityId)
     {
-       var userId = AuthorizationHelper.GetAuthenticatedUserId(httpContextAccessor);
+        var userId = AuthorizationHelper.GetAuthenticatedUserId(httpContextAccessor);
 
-       var activity = await readAtvRepo.FindByIdAsync(activityId)
-        ?? throw new KeyNotFoundException($"Activity with ID {activityId} not found.");
-
-        
-        _ = await readUserRepo.FindByIdAsync(userId)
-            ?? throw new KeyNotFoundException($"User with ID {userId} not found.");
-
-
-        var eventId = activity.EventId;
-
-        _ = await readIncriptionRepo.FindByUserIdAndEventIdAsync(userId, eventId) ?? throw new InvalidOperationException($"User {userId} is not inscribed in the event {eventId} related to this activity.");
-
-        var CertificateExisting = await readRepo.FindByUserIdAndActivityIdAsync(userId, activityId);
-        if (CertificateExisting != null)
+        var attendance = await attendanceReadRepo.FindByUserIdAndActivityIdAsync(userId, activityId);
+        if (!attendance.IsPresent)
         {
-            throw new InvalidOperationException($"User {userId} is already registered for activity {activityId}.");
+            throw new InvalidOperationException("The user has not confirmed attendance");
         }
 
-        var Certificate = new Domain.Entities.Certificate();
-           
-        await writeRepo.CreateAsync(Certificate);
-        await unitOfWork.CommitAsync();
-        return new RegisterCertificateResponse(Certificate.Id, userId, activityId);
+        await certificateGeneratorService.GenerateCertificateForUser((int)activityId, userId);
+
+        return new RegisterCertificateResponse(attendance.Id, userId, activityId);
     }
 }

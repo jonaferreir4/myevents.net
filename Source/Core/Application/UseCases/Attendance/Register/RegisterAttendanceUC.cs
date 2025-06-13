@@ -34,6 +34,10 @@ public class RegisterAttendanceUC(
         _ = await readUserRepo.FindByIdAsync(userId)
             ?? throw new KeyNotFoundException($"User with ID {userId} not found.");
 
+        if (activity.SpeakerId == 0)
+        {
+            throw new KeyNotFoundException("The activity has no speaker");
+        }
 
         var eventId = activity.EventId;
 

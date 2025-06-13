@@ -31,7 +31,7 @@ public class AttendanceRepository(AppDbContext _context) : BaseRepository<Attend
         return Attendance;
     }
 
-    public async Task<IEnumerable<Attendance>> FindByPresentUserIdAsync(long userId, bool isPresent)
+    public async Task<IEnumerable<Attendance>> FindByPresentUserIdAsync(long userId, long activityId, bool isPresent)
     {
         return  await _context.Attendances
             .Where(i => i.UserId == userId && i.IsPresent == isPresent)

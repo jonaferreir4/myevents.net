@@ -6,7 +6,7 @@ public interface IAttendanceReadRepository : IReadOnlyRepository<Entities.Attend
 {
     Task<Entities.Attendance?> FindByIdAsync(long id);
     Task<Entities.Attendance> FindByUserIdAndActivityIdAsync(long userId, long activityId);
-    Task<IEnumerable<Entities.Attendance>> FindByPresentUserIdAsync(long userId, bool isPresent);
+    Task<IEnumerable<Entities.Attendance>> FindByPresentUserIdAsync(long userId, long activityId, bool isPresent);
     Task<IEnumerable<Entities.Attendance>> FindByUserIdAsync(long userId);
     Task<IEnumerable<Entities.Attendance>> FindByActivityIdAsync(long activityId);
 

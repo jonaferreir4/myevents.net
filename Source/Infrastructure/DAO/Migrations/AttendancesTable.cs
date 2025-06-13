@@ -16,6 +16,7 @@ public class AttendancesTable : Migration
         Create.Table("Attendances")
             .WithColumn("Id").AsInt64().PrimaryKey().Identity()
             .WithColumn("IsPresent").AsBoolean().NotNullable().WithDefaultValue(false)
+            .WithColumn("ConfirmationDate").AsDateTime().Nullable()
             .WithColumn("UserId").AsInt64().NotNullable()
             .WithColumn("ActivityId").AsInt64().NotNullable()
             .WithColumn("CreatedOn").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentDateTime)

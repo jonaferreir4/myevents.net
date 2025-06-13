@@ -6,46 +6,33 @@ using Domain.Entities;
 
 namespace Application.Services;
 
-public class CertificateGeneratorService
+public class CertificateGeneratorService(
+    ICertificateWriteRepository certificateWriteRepo,
+    IAttendanceReadRepository attendanceReadRepo,
+    IActivityReadRepository activityReadRepo,
+    IUnitOfWork unitOfWork) : ICertificateGeneratorService
 {
-    private readonly ICertificateWriteRepository _certificateWriteRepo;
-    private readonly IAttendanceReadRepository _attendanceReadRepo;
-    private readonly IActivityReadRepository _activityReadRepo;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICertificateWriteRepository _certificateWriteRepo = certificateWriteRepo;
+    private readonly IAttendanceReadRepository _attendanceReadRepo = attendanceReadRepo;
+    private readonly IActivityReadRepository _activityReadRepo = activityReadRepo;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public CertificateGeneratorService(
-        ICertificateWriteRepository certificateWriteRepo,
-        IAttendanceReadRepository attendanceReadRepo,
-        IActivityReadRepository activityReadRepo,
-        IUnitOfWork unitOfWork)
-    {
-        _certificateWriteRepo = certificateWriteRepo;
-        _attendanceReadRepo = attendanceReadRepo;
-        _activityReadRepo = activityReadRepo;
-        _unitOfWork = unitOfWork;
-    }
+    public async Task GenerateCertificateForUser(long activityId, long userId)
+{
+    var activity = await _activityReadRepo.FindByIdAsync(activityId);
+    if (activity == null) throw new KeyNotFoundException("Activity not found");
 
-    public async Task GenerateCertificatesForActivity(int activityId)
-    {
-        var activity = await _activityReadRepo.FindByIdAsync(activityId);
-        if (activity == null) throw new KeyNotFoundException("Activity not found");
+    var certificateName = $"{activity.Name} - {userId}";
 
-        var attendees = await _attendanceReadRepo.FindByActivityIdAsync(activityId);
+    var certificate = new Certificate(
+        name: certificateName,
+        totalHours: Convert.ToDecimal(activity.CertificationHours.TotalHours),
+        activityId: activityId,
+        userId: userId
+    );
 
-        foreach (var attendee in attendees)
-        {
-            var certificateName = $"{activity.Name} - {attendee.User.Name}";
+    await _certificateWriteRepo.CreateAsync(certificate);
+    await _unitOfWork.CommitAsync();
+}
 
-            var certificate = new Certificate(
-                name: certificateName,
-                totalHours: Convert.ToDecimal(activity.CertificationHours.TotalHours),
-                activityId: activityId,
-                userId: attendee.UserId
-            );
-
-            await _certificateWriteRepo.CreateAsync(certificate);
-        }
-
-        await _unitOfWork.CommitAsync();
-    }
 }
