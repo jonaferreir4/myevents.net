@@ -11,6 +11,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Inscription> Inscriptions { get; set; }
     public DbSet<Attendance> Attendances { get; set; }
     public DbSet<Certificate> Certificates { get; set; }
+    public DbSet<Sponsor> Sponsors { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
