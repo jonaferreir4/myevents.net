@@ -26,6 +26,9 @@ using Application.UseCases.Attendance.Delete;
 using Domain.Contracts.Data.Repositories.Certificate;
 using Application.UseCases.Attendance.Update;
 using Domain.Contracts.Data.Repositories.Sponsor;
+using Application.UseCases.Sponsor.Register;
+using Application.UseCases.Sponsor.Update;
+using Application.UseCases.Sponsor.Delete;
 
 namespace IoC;
     public static class PercistenceExtension
@@ -95,6 +98,9 @@ namespace IoC;
         // Sponsor Repositories and Use Cases
         services.AddScoped<ISponsorReadRepository, SponsorRepository>();
         services.AddScoped<ISponsorWriteRepository, SponsorRepository>();
+        services.AddScoped<IRegisterSponsorUC, RegisterSponsorUC>();
+        services.AddScoped<IUpdateSponsorUC, UpdateSponsorUC>();
+        services.AddScoped<IDeleteSponsorUC, DeleteSponsorUC>();
 
         
 
