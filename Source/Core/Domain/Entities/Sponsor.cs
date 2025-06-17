@@ -21,15 +21,15 @@ public sealed class Sponsor : BaseEntity
 
 
   public Sponsor(
-     string name,
-        string logoUrl,
-        long eventId,
-        SponsorShipLevel level,
-        string description = null,
-        string websiteUrl = null,
-        string linkedInUrl = null,
-        string instagramUrl = null,
-         bool isActive = true
+    string name,
+    string logoUrl,
+    long eventId,
+    SponsorShipLevel level,
+    string description = null,
+    string websiteUrl = null,
+    string linkedInUrl = null,
+    string instagramUrl = null,
+    bool isActive = true
     )
   {
 
