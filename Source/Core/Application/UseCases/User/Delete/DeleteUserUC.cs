@@ -1,5 +1,6 @@
 using Domain.Contracts.Data.Repositories.User;
 using Domain.Contracts.Data.Services;
+using Library.Http.Responses.User;
 using Library.Utils.Authorization;
 
 namespace Application.UseCases.User.Delete;

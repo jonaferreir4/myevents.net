@@ -1,4 +1,7 @@
 
+using Library.Http.Requests.Activity;
+using Library.Http.Responses.Activity;
+
 namespace Application.UseCases.Activity.Update;
     public interface IUpdateActivityUC
     {

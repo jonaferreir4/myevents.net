@@ -1,4 +1,5 @@
 using FluentValidation;
+using Library.Http.Requests.User;
 namespace Application.UseCases.User.Login;
 
 public class LoginUserValidator : AbstractValidator<LoginUserRequest>

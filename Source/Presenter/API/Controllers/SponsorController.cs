@@ -1,6 +1,8 @@
 using Application.UseCases.Sponsor.Delete;
 using Application.UseCases.Sponsor.Register;
 using Application.UseCases.Sponsor.Update;
+using Library.Http.Requests.Sponsor;
+using Library.Http.Responses.Sponsor;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

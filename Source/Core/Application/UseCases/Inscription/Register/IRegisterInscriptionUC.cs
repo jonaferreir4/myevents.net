@@ -1,4 +1,6 @@
 
+using Library.Http.Responses.Inscription;
+
 namespace Application.UseCases.Inscription.Register;
     public interface IRegisterInscriptionUC
     {

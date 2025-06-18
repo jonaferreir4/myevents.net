@@ -1,4 +1,6 @@
 
+using Library.Http.Responses.Activity;
+
 namespace Application.UseCases.Activity.Delete;
     public interface IDeleteActivityUC
     {

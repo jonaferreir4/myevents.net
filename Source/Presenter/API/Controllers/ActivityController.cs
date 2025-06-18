@@ -1,6 +1,8 @@
 using Application.UseCases.Activity.Delete;
 using Application.UseCases.Activity.Register;
 using Application.UseCases.Activity.Update;
+using Library.Http.Requests.Activity;
+using Library.Http.Responses.Activity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,7 +1,8 @@
 
-using Application.UseCases.Sponsor.Register;
 using Application.UseCases.Sponsor.Update;
 using Domain.Entities;
+using Library.Http.Requests.Sponsor;
+using Library.Http.Responses.Sponsor;
 
 namespace Application.Mappings;
 

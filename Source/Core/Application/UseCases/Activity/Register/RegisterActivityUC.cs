@@ -2,6 +2,8 @@ using Application.Mappings;
 using Domain.Contracts.Data.Repositories.Activity;
 using Domain.Contracts.Data.Repositories.Event;
 using Domain.Contracts.Data.Services;
+using Library.Http.Requests.Activity;
+using Library.Http.Responses.Activity;
 using Library.Utils.Authorization;
 
 namespace Application.UseCases.Activity.Register;

@@ -1,5 +1,6 @@
 using Domain.Contracts.Data.Repositories.Certificate;
 using Domain.Contracts.Data.Services;
+using Library.Http.Responses.Certificate;
 using Library.Utils.Authorization;
 
 namespace Application.UseCases.Certificate.Delete;

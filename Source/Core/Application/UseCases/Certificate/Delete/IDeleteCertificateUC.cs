@@ -1,4 +1,6 @@
 
+using Library.Http.Responses.Certificate;
+
 namespace Application.UseCases.Certificate.Delete;
     public interface IDeleteCertificateUC
     {

@@ -1,6 +1,7 @@
 using Application.Services;
 using Domain.Contracts.Data.Repositories.Attendance;
 using Domain.Contracts.Data.Services;
+using Library.Http.Responses.Attendance;
 using Library.Utils.Authorization;
 
 namespace Application.UseCases.Attendance.Update;

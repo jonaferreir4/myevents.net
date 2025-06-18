@@ -3,6 +3,8 @@
 using Application.Mappings;
 using Domain.Contracts.Data.Repositories.Event;
 using Domain.Contracts.Data.Services;
+using Library.Http.Requests.Event;
+using Library.Http.Responses.Event;
 using Library.Utils.Authorization;
 
 namespace Application.UseCases.Event.Update;

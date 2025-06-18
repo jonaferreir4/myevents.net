@@ -1,4 +1,6 @@
 
+using Library.Http.Responses.User;
+
 namespace Application.UseCases.User.Delete;
     public interface IDeleteUserUC
     {

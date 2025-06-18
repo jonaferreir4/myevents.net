@@ -1,4 +1,6 @@
 
+using Library.Http.Responses.Inscription;
+
 namespace Application.UseCases.Inscription.Delete;
     public interface IDeleteInscriptionUC
     {

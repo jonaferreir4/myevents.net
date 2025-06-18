@@ -3,6 +3,8 @@ using Application.UseCases.User.Delete;
 using Application.UseCases.User.Login;
 using Application.UseCases.User.Register;
 using Application.UseCases.User.Update;
+using Library.Http.Requests.User;
+using Library.Http.Responses.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

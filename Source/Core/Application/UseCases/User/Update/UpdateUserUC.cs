@@ -4,6 +4,8 @@ using Application.Mappings;
 using Application.Services;
 using Domain.Contracts.Data.Repositories.User;
 using Domain.Contracts.Data.Services;
+using Library.Http.Requests.User;
+using Library.Http.Responses.User;
 using Library.Utils.Authorization; // Add this if NotFoundException is in System or for Exception base class
 
 namespace Application.UseCases.User.Update;

@@ -1,10 +1,11 @@
 
 
 using Application.Mappings;
-using Application.UseCases.Sponsor.Register;
 using Domain.Contracts.Data.Repositories.Event;
 using Domain.Contracts.Data.Repositories.Sponsor;
 using Domain.Contracts.Data.Services;
+using Library.Http.Requests.Sponsor;
+using Library.Http.Responses.Sponsor;
 using Library.Utils.Authorization;
 
 namespace Application.UseCases.Sponsor.Update;

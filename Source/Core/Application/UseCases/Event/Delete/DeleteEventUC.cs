@@ -1,5 +1,6 @@
 using Domain.Contracts.Data.Repositories.Event;
 using Domain.Contracts.Data.Services;
+using Library.Http.Responses.Event;
 using Library.Utils.Authorization;
 
 namespace Application.UseCases.Event.Delete;

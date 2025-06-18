@@ -1,4 +1,6 @@
 
+using Library.Http.Responses.Event;
+
 namespace Application.UseCases.Event.Delete;
     public interface IDeleteEventUC
     {

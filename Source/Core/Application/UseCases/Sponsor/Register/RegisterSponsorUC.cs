@@ -3,6 +3,8 @@ using Domain.Contracts.Data.Repositories.Event;
 using Domain.Contracts.Data.Repositories.Sponsor;
 using Domain.Contracts.Data.Repositories.User;
 using Domain.Contracts.Data.Services;
+using Library.Http.Requests.Sponsor;
+using Library.Http.Responses.Sponsor;
 using Library.Utils.Authorization;
 
 namespace Application.UseCases.Sponsor.Register;

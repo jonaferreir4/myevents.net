@@ -4,6 +4,7 @@ using Domain.Contracts.Data.Repositories.Event;
 using Domain.Contracts.Data.Services;
 using Library.Utils.Authorization;
 using Domain.Contracts.Data.Repositories.User;
+using Library.Http.Responses.Inscription;
 
 namespace Application.UseCases.Inscription.Register;
 

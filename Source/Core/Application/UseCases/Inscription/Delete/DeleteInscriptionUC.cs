@@ -4,6 +4,7 @@ using Domain.Contracts.Data.Repositories.Inscription;
 using Domain.Contracts.Data.Repositories.Event;
 using Domain.Contracts.Data.Services;
 using Library.Utils.Authorization;
+using Library.Http.Responses.Inscription;
 
 namespace Application.UseCases.Inscription.Delete;
 

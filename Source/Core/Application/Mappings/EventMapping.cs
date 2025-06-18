@@ -1,7 +1,8 @@
 
-using Application.UseCases.Event.Register;
 using Application.UseCases.Event.Update;
 using Domain.Entities;
+using Library.Http.Requests.Event;
+using Library.Http.Responses.Event;
 
 namespace Application.Mappings;
 

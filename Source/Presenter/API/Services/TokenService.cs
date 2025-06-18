@@ -2,7 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using API.Helpers;
-using Application.UseCases.User.Login;
+using Library.Http.Responses.User;
 using Microsoft.IdentityModel.Tokens;
 
 namespace API.Services;

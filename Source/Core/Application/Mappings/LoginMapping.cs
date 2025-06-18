@@ -1,6 +1,6 @@
 
-using Application.UseCases.User.Login;
 using Domain.Entities;
+using Library.Http.Responses.User;
 
 namespace Application.Mappings;
 

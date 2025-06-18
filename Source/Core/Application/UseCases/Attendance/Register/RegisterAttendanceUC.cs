@@ -5,6 +5,7 @@ using Domain.Contracts.Data.Repositories.User;
 using Domain.Contracts.Data.Repositories.Activity;
 using Domain.Contracts.Data.Repositories.Inscription;
 using Domain.Contracts.Data.Repositories.Event;
+using Library.Http.Responses.Attendance;
 
 namespace Application.UseCases.Attendance.Register;
 

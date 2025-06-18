@@ -1,6 +1,8 @@
 using Application.Mappings;
 using Domain.Contracts.Data.Repositories.Activity;
-using Domain.Contracts.Data.Services; // Add this if NotFoundException is in System or for Exception base class
+using Domain.Contracts.Data.Services;
+using Library.Http.Requests.Activity;
+using Library.Http.Responses.Activity; // Add this if NotFoundException is in System or for Exception base class
 
 namespace Application.UseCases.Activity.Update;
 

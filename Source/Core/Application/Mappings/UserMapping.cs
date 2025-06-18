@@ -1,7 +1,6 @@
-
-using Application.UseCases.User.Register;
-using Application.UseCases.User.Update;
 using Domain.Entities;
+using Library.Http.Requests.User;
+using Library.Http.Responses.User;
 
 namespace Application.Mappings;
 

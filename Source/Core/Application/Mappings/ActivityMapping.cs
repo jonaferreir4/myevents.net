@@ -1,7 +1,7 @@
-
-using Application.UseCases.Activity.Register;
 using Application.UseCases.Activity.Update;
 using Domain.Entities;
+using Library.Http.Requests.Activity;
+using Library.Http.Responses.Activity;
 
 namespace Application.Mappings;
 
