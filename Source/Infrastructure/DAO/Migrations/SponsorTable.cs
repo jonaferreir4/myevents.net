@@ -17,7 +17,9 @@ public class SponsorTable : Migration
             .WithColumn("InstagramUrl").AsString(500).Nullable()
             .WithColumn("IsActive").AsBoolean().NotNullable().WithDefaultValue(true)
             .WithColumn("Level").AsInt32().NotNullable()
-            .WithColumn("EventId").AsInt64().NotNullable();
+            .WithColumn("EventId").AsInt64().NotNullable()
+            .WithColumn("CreatedOn").AsDateTime().NotNullable()
+            .WithColumn("UpdatedOn").AsDateTime().Nullable();
 
         Create.ForeignKey("FK_Sponsors_Event")
             .FromTable("Sponsors").ForeignColumn("EventId")

@@ -35,7 +35,8 @@ public sealed class Notification : BaseEntity
       NotificationType type,
       bool isUrgent = false,
       long? relatedEntityId = null,
-      string relatedEntityType = null)
+      string? relatedEntityType = null
+      )
   {
     Title = title;
     Message = message;
@@ -44,7 +45,6 @@ public sealed class Notification : BaseEntity
     IsUrgent = isUrgent;
     RelatedEntityId = relatedEntityId;
     RelatedEntityType = relatedEntityType;
-    CreatedAt = DateTime.UtcNow;
   }
 
   public Notification () {}
