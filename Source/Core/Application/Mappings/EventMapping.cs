@@ -1,5 +1,4 @@
 
-using Application.UseCases.Event.Update;
 using Domain.Entities;
 using Library.Http.Requests.Event;
 using Library.Http.Responses.Event;
@@ -39,7 +38,21 @@ public static class EventMapping
             organizerId: existingEvent.OrganizerId
         );
     }
-      
+
+    public static FindByFilterResponse ToFindResponse(this Event @event)
+    {
+        return new FindByFilterResponse(
+            @event.Name,
+            @event.Theme,
+            @event.Description,
+            @event.StartDate,
+            @event.EndDate,
+            @event.StartTime,
+            @event.EndTime,
+            @event.Location,
+            @event.Modality
+        );
+    }
 
     public static RegisterEventResponse ToResponse(this Event @event)
     {

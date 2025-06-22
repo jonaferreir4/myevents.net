@@ -29,6 +29,9 @@ using Domain.Contracts.Data.Repositories.Sponsor;
 using Application.UseCases.Sponsor.Register;
 using Application.UseCases.Sponsor.Update;
 using Application.UseCases.Sponsor.Delete;
+using Application.UseCases.Event.FindById;
+using Application.UseCases.Event.FindByFilters;
+using Application.UseCases.Activity.FindByFilters;
 
 namespace IoC;
     public static class PercistenceExtension
@@ -65,6 +68,8 @@ namespace IoC;
         services.AddScoped<IRegisterEventUC, RegisterEventUC>();
         services.AddScoped<IDeleteEventUC, DeleteEventUC>();
         services.AddScoped<IUpdateEventUC, UpdateEventUC>();
+        services.AddScoped<IFindEventByIdUC, FindEventByIdUC>();
+        services.AddScoped<IFindEventsByFiltersUC, FindEventsByFiltersUC>();
         services.AddHttpContextAccessor();
 
         // Activity Repositories and Use Cases
@@ -73,6 +78,7 @@ namespace IoC;
         services.AddScoped<IRegisterActivityUC, RegisterActivityUC>();
         services.AddScoped<IUpdateActivityUC, UpdateActivityUC>();
         services.AddScoped<IDeleteActivityUC, DeleteActivityUC>();
+        services.AddScoped<IFindActivitiesByFiltersUC, FindActivitiesByFiltersUC>();
 
 
         // Inscription Repositories and Use Cases

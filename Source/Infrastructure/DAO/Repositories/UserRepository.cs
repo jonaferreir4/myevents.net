@@ -2,6 +2,7 @@ using DAO.Context;
 using Domain.Entities;
 using Domain.Contracts.Data.Repositories.User;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace DAO.Repositories;
     public class UserRepository (AppDbContext _context): BaseRepository<User>(_context), IUserReadRepository, IUserWriteRepository
@@ -21,7 +22,7 @@ namespace DAO.Repositories;
             return await _context.Users.FirstOrDefaultAsync(user => user.Email == email);
         }
 
-        public async Task<IList<User>> FindAllAsync(int wrapperId)
+        public async Task<IList<User>> FindAllAsync(long wrapperId)
         {
             return await _context.Users.ToListAsync();
         }
@@ -32,4 +33,11 @@ namespace DAO.Repositories;
 
             return user;
         }
+
+    public async Task<IEnumerable<User>> QueryAsync(Expression<Func<User, bool>> predicate)
+    {
+         return await _context.Users
+            .Where(predicate)
+            .ToListAsync();
+    }
 }

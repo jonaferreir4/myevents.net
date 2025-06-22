@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using DAO.Context;
 using Domain.Contracts.Data.Repositories.Activity;
 using Domain.Entities;
@@ -10,7 +11,7 @@ namespace DAO.Repositories
     {
        
 
-        public async Task<IList<Activity>> FindAllAsync(int wrapperId)
+        public async Task<IList<Activity>> FindAllAsync(long wrapperId)
         {
             return await _context.Activities.ToListAsync();
         }
@@ -52,5 +53,11 @@ namespace DAO.Repositories
             .ToListAsync();
         }
 
+        public async Task<IEnumerable<Activity>> QueryAsync(Expression<Func<Activity, bool>> predicate)
+        {
+             return await _context.Activities
+            .Where(predicate)
+            .ToListAsync();
+        }
     }
 }

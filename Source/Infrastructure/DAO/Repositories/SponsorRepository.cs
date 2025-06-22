@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using DAO.Context;
 using Domain.Contracts.Data.Repositories.Sponsor;
 using Domain.Entities;
@@ -7,7 +8,7 @@ namespace DAO.Repositories;
 
 public class SponsorRepository(AppDbContext _context) : BaseRepository<Sponsor>(_context), ISponsorReadRepository, ISponsorWriteRepository
 {
-    public async Task<IList<Sponsor>> FindAllAsync(int wrapperId)
+    public async Task<IList<Sponsor>> FindAllAsync(long wrapperId)
     {
         return await _context.Sponsors.ToListAsync();
     }
@@ -27,5 +28,12 @@ public class SponsorRepository(AppDbContext _context) : BaseRepository<Sponsor>(
     public  async Task<Sponsor?> FindByNameAsync(string name)
     {
          return await _context.Sponsors.FirstOrDefaultAsync(s => s.Name == name);
+    }
+
+    public async Task<IEnumerable<Sponsor>> QueryAsync(Expression<Func<Sponsor, bool>> predicate)
+    {
+        return await _context.Sponsors
+            .Where(predicate)
+            .ToListAsync();
     }
 }

@@ -1,4 +1,5 @@
 
+using System.Linq.Expressions;
 using DAO.Context;
 using Domain.Contracts.Data.Repositories.Certificate;
 using Domain.Entities;
@@ -9,7 +10,7 @@ namespace DAO.Repositories;
 public class CertificateRepository(AppDbContext _context) : BaseRepository<Certificate>(_context),
 ICertificateReadRepository, ICertificateWriteRepository
 {
-    public async Task<IList<Certificate>> FindAllAsync(int wrapperId)
+    public async Task<IList<Certificate>> FindAllAsync(long wrapperId)
     {
         return await _context.Certificates.ToListAsync();
     }
@@ -56,5 +57,12 @@ ICertificateReadRepository, ICertificateWriteRepository
         return await _context.Certificates
         .Where(c => c.UserId == userId)
         .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Certificate>> QueryAsync(Expression<Func<Certificate, bool>> predicate)
+    {
+         return await _context.Certificates
+            .Where(predicate)
+            .ToListAsync();
     }
 }

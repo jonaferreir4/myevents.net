@@ -3,12 +3,13 @@ using Domain.Contracts.Data.Repositories.Inscription;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace DAO.Repositories;
 
 public class InscriptionRepository(AppDbContext _context) : BaseRepository<Inscription>(_context), IInscriptionReadRepository, IInscriptionWriteRepository
 {
-    public async Task<IList<Inscription>> FindAllAsync(int wrapperId)
+    public async Task<IList<Inscription>> FindAllAsync(long wrapperId)
     {
          return await _context.Inscriptions.ToListAsync();
     }
@@ -41,6 +42,13 @@ public class InscriptionRepository(AppDbContext _context) : BaseRepository<Inscr
     {
         return await _context.Inscriptions
             .Where(i => i.UserId == userId)
+            .ToListAsync();
+    }
+
+    public async  Task<IEnumerable<Inscription>> QueryAsync(Expression<Func<Inscription, bool>> predicate)
+    {
+         return await _context.Inscriptions
+            .Where(predicate)
             .ToListAsync();
     }
 }

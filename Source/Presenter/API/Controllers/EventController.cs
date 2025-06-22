@@ -1,6 +1,9 @@
 using Application.UseCases.Event.Delete;
+using Application.UseCases.Event.FindByFilters;
+using Application.UseCases.Event.FindById;
 using Application.UseCases.Event.Register;
 using Application.UseCases.Event.Update;
+using Library.Http.DTO;
 using Library.Http.Requests.Event;
 using Library.Http.Responses.Event;
 using Microsoft.AspNetCore.Authorization;
@@ -12,6 +15,28 @@ namespace API.Controllers;
 [Route("[Controller]")]
 public sealed class EventController : ControllerBase
 {
+
+  [HttpGet("")]
+  public async Task<IActionResult> FindByFilter(
+    [FromServices] IFindEventsByFiltersUC uc,
+    [FromQuery] EventFilter filter
+
+  )
+  {
+    var response = await uc.FindEventsByFiltersAsync(filter);
+    return Ok(response);
+  }
+
+  [HttpGet("{id:long}")]
+  public async Task<IActionResult> FindById(
+    [FromServices] IFindEventByIdUC uc,
+    [FromRoute] long id
+  )
+  {
+    var response = await uc.FindEventById(id);
+    return Ok(response);
+  }
+  
   [HttpPost("")]
   public async Task<IActionResult> Register(
     [FromServices] IRegisterEventUC uc,

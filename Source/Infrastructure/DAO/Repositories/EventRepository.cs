@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using DAO.Context;
 using Domain.Contracts.Data.Repositories.Event;
 using Domain.Entities;
@@ -7,7 +8,7 @@ namespace DAO.Repositories;
 
 public class EventRepository(AppDbContext _context) : BaseRepository<Event>(_context), IEventReadRepository, IEventWriteRepository
 {
-    public async Task<IList<Event>> FindAllAsync(int wrapperId)
+    public async Task<IList<Event>> FindAllAsync(long wrapperId)
     {
         return await _context.Events.ToListAsync();
     }
@@ -24,20 +25,6 @@ public class EventRepository(AppDbContext _context) : BaseRepository<Event>(_con
         return evt;
     }
 
-    public async Task<IEnumerable<Event>> FindByLocationAsync(string location)
-    {
-        return await _context.Events
-            .Where(e => e.Location == location)
-            .ToListAsync();
-    }
-
-    public async Task<IEnumerable<Event>> FindByModalityAsync(string modality)
-    {
-        return await _context.Events
-        .Where(e => e.Modality == modality)
-        .ToListAsync();
-    }
-
     public async Task<Event?> FindByNameAsync(string name)
     {
         return await _context.Events.FirstOrDefaultAsync(e => e.Name == name);
@@ -49,32 +36,11 @@ public class EventRepository(AppDbContext _context) : BaseRepository<Event>(_con
             .Where(e => e.OrganizerId == organizerId)
             .ToListAsync();
     }
-
-    public async Task<IEnumerable<Event>> FindByStartDateAsync(DateOnly startDate)
+    
+    public async Task<IEnumerable<Event>> QueryAsync(Expression<Func<Event, bool>> predicate)
     {
         return await _context.Events
-            .Where(e => e.StartDate == startDate)
-            .ToListAsync();
-    }
-
-    public async Task<IEnumerable<Event>> FindByThemeAsync(string theme)
-    {
-        return await _context.Events
-            .Where(e => e.Theme == theme)
-            .ToListAsync();
-    }
-
-    public async Task<IEnumerable<Event>> FindPastEventsAsync(DateOnly toDate)
-    {
-        return await _context.Events
-            .Where(e => e.StartDate < toDate)
-            .ToListAsync();
-    }
-
-    public async Task<IEnumerable<Event>> FindUpcomingEventsAsync(DateOnly fromDate)
-    {
-        return await _context.Events
-            .Where(e => e.StartDate >= fromDate)
+            .Where(predicate)
             .ToListAsync();
     }
 }

@@ -44,6 +44,22 @@ public static class ActivityMapping
          
         );
     }
+
+    public static FindByFilterResponse ToFindResponse(this Activity Activity)
+    {
+        return new FindByFilterResponse(
+            Activity.Name,
+            Activity.Theme,
+            Activity.Type,
+            Activity.Description,
+            Activity.StartDate,
+            Activity.EndDate,
+            Activity.StartTime,
+            Activity.EndTime,
+            Activity.MaxParticipants,
+            Activity.CertificationHours
+        );
+    }
       
 
     public static RegisterActivityResponse ToResponse(this Activity Activity)

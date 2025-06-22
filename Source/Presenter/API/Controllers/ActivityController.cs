@@ -1,6 +1,8 @@
 using Application.UseCases.Activity.Delete;
+using Application.UseCases.Activity.FindByFilters;
 using Application.UseCases.Activity.Register;
 using Application.UseCases.Activity.Update;
+using Library.Http.DTO;
 using Library.Http.Requests.Activity;
 using Library.Http.Responses.Activity;
 using Microsoft.AspNetCore.Authorization;
@@ -12,9 +14,20 @@ namespace API.Controllers;
 [Route("Event/{eventId:long}/[Controller]")]
 public class ActivityController : ControllerBase
 {
+
+    [HttpGet("")]
+    public async Task<IActionResult> FindByFilter(
+    [FromServices] IFindActivitiesByFiltersUC uc,
+    [FromQuery] ActivityFilter filter
+
+  )
+  {
+    var response = await uc.FindActivitiesByFiltersAsync(filter);
+    return Ok(response);
+  }
+
     [HttpPost("")]
     [ProducesResponseType(typeof(RegisterActivityResponse), StatusCodes.Status201Created)]
-
     [Authorize]
     public async Task<IActionResult> Register(
         [FromServices] IRegisterActivityUC uc,

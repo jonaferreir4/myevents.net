@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using DAO.Context;
 using Domain.Contracts.Data.Repositories.Attendance;
 using Domain.Entities;
@@ -7,7 +8,7 @@ namespace DAO.Repositories;
 
 public class AttendanceRepository(AppDbContext _context) : BaseRepository<Attendance>(_context), IAttendanceReadRepository, IAttendanceWriteRepository
 {
-    public async Task<IList<Attendance>> FindAllAsync(int wrapperId)
+    public async Task<IList<Attendance>> FindAllAsync(long wrapperId)
     {
          return await _context.Attendances.ToListAsync();
     }
@@ -48,6 +49,13 @@ public class AttendanceRepository(AppDbContext _context) : BaseRepository<Attend
     {
         return await _context.Attendances
             .Where(i => i.UserId == userId)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Attendance>> QueryAsync(Expression<Func<Attendance, bool>> predicate)
+    {
+         return await _context.Attendances
+            .Where(predicate)
             .ToListAsync();
     }
 }
