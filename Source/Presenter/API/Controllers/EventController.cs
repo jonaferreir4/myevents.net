@@ -17,15 +17,15 @@ public sealed class EventController : ControllerBase
 {
 
   [HttpGet("")]
-  public async Task<IActionResult> FindByFilter(
-    [FromServices] IFindEventsByFiltersUC uc,
-    [FromQuery] EventFilter filter
+    public async Task<IActionResult> FindByFilter(
+      [FromServices] IFindEventsByFiltersUC uc,
+      [FromQuery] EventFilter filter
 
-  )
-  {
-    var response = await uc.FindEventsByFiltersAsync(filter);
-    return Ok(response);
-  }
+    )
+    {
+      var response = await uc.FindEventsByFiltersAsync(filter);
+      return Ok(response);
+    }
 
   [HttpGet("{id:long}")]
   public async Task<IActionResult> FindById(
