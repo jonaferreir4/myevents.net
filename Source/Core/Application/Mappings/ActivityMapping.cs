@@ -24,25 +24,21 @@ public static class ActivityMapping
           speakerId: request.SpeakerId
         );
     }
-    
+
     public static Activity ToEntity(this UpdateActivityRequest request, Activity existingActivity)
     {
-        return new Activity(
-          name: request.Name,
-          theme: request.Theme,
-          type: request.Type,
-          description: request.Description,
-          startDate: request.StartDate,
-          endDate: request.EndDate,
-          startTime: request.StartTime,
-          endTime: request.EndTime,
-          maxParticipants: request.MaxParticipants,
-          certificationHours: request.CertificationHours,
-          speakerId: existingActivity.SpeakerId,
-          eventId: existingActivity.EventId
+        existingActivity.Name = request.Name;
+        existingActivity.Theme = request.Theme;
+        existingActivity.Type = request.Type;
+        existingActivity.Description = request.Description;
+        existingActivity.StartDate = request.StartDate;
+        existingActivity.EndDate = request.EndDate;
+        existingActivity.StartTime = request.StartTime;
+        existingActivity.EndTime = request.EndTime;
+        existingActivity.MaxParticipants = request.MaxParticipants;
+        existingActivity.CertificationHours = request.CertificationHours;
 
-         
-        );
+        return existingActivity;
     }
 
     public static FindByFilterResponse ToFindResponse(this Activity Activity)

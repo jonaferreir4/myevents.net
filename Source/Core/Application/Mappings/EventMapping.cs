@@ -22,21 +22,20 @@ public static class EventMapping
           organizerId: organizerId
         );
     }
-    
+
     public static Event ToEntity(this UpdateEventRequest request, Event existingEvent)
     {
-        return new Event(
-            name: request.Name,
-            theme: request.Theme,
-            description: request.Description,
-            startDate: request.StartDate,
-            endDate: request.EndDate,
-            startTime: request.StartTime,
-            endTime: request.EndTime,
-            location: request.Location,
-            modality: request.Modality,
-            organizerId: existingEvent.OrganizerId
-        );
+        existingEvent.Name = request.Name;
+        existingEvent.Theme = request.Theme;
+        existingEvent.Description = request.Description;
+        existingEvent.StartDate = request.StartDate;
+        existingEvent.EndDate = request.EndDate;
+        existingEvent.StartTime = request.StartTime;
+        existingEvent.EndTime = request.EndTime;
+        existingEvent.Location = request.Location;
+        existingEvent.Modality = request.Modality;
+
+        return existingEvent; // Retorna a mesma instância atualizada
     }
 
     public static FindByFilterResponse ToFindResponse(this Event @event)
@@ -62,4 +61,4 @@ public static class EventMapping
             @event.Description
         );
     }
-    }
+}
