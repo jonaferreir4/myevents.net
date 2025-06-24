@@ -1,5 +1,4 @@
 
-using Application.UseCases.Sponsor.Update;
 using Domain.Entities;
 using Library.Http.Requests.Sponsor;
 using Library.Http.Responses.Sponsor;

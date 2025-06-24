@@ -1,5 +1,3 @@
-
-
 using Application.Mappings;
 using Domain.Contracts.Data.Repositories.Event;
 using Domain.Contracts.Data.Repositories.Sponsor;
@@ -35,7 +33,7 @@ public class UpdateSponsorUC(
         if (@event.OrganizerId != organizerId)
             throw new UnauthorizedAccessException("You are not authorized to update this Sponsor.");
 
-        var mapSponsor = request.ToEntity();
+        var mapSponsor = request.ToEntity(SponsorToUpdate);
 
         await writeRepo.UpdateAsync(mapSponsor);
         await unitOfWork.CommitAsync();
