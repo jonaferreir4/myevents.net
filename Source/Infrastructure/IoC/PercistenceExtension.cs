@@ -32,6 +32,10 @@ using Application.UseCases.Sponsor.Delete;
 using Application.UseCases.Event.FindById;
 using Application.UseCases.Event.FindByFilters;
 using Application.UseCases.Activity.FindByFilters;
+using Domain.Contracts.Data.Repositories.Evaluation;
+using Application.UseCases.Evaluation.Delete;
+using Application.UseCases.Evaluation.Update;
+using Application.UseCases.Evaluation.Register;
 
 namespace IoC;
     public static class PercistenceExtension
@@ -108,7 +112,13 @@ namespace IoC;
         services.AddScoped<IUpdateSponsorUC, UpdateSponsorUC>();
         services.AddScoped<IDeleteSponsorUC, DeleteSponsorUC>();
 
-        
+        // Evaluation Repositories and Use Cases
+        services.AddScoped<IEvaluationReadRepository, EvaluationRepository>();
+        services.AddScoped<IEvaluationWriteRepository, EvaluationRepository>();
+        services.AddScoped<IRegisterEvaluationUC, RegisterEvaluationUC>();
+        services.AddScoped<IUpdateEvaluationUC, UpdateEvaluationUC>();
+        services.AddScoped<IDeleteEvaluationUC, DeleteEvaluationUC>();
+
 
     }
     }
