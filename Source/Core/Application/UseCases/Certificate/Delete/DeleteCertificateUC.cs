@@ -15,7 +15,7 @@ public class DeleteCertificateUC(
     {
         var userId = AuthorizationHelper.GetAuthenticatedUserId(httpContextAccessor);
        
-        var certificate = await readRepo.FindByIdWithRelationsAsync(id)
+        var certificate = await readRepo.FindByIdAsync(id)
             ?? throw new KeyNotFoundException($"Certificate with ID {id} not found.");
 
         if (certificate.UserId != userId)

@@ -36,6 +36,8 @@ using Domain.Contracts.Data.Repositories.Evaluation;
 using Application.UseCases.Evaluation.Delete;
 using Application.UseCases.Evaluation.Update;
 using Application.UseCases.Evaluation.Register;
+using Application.UseCases.Certificate.FindById;
+using Application.UseCases.Certificate.Delete;
 
 namespace IoC;
     public static class PercistenceExtension
@@ -102,6 +104,8 @@ namespace IoC;
         // Certificate Repositories and Use Cases       
         services.AddScoped<ICertificateReadRepository, CertificateRepository>();
         services.AddScoped<ICertificateWriteRepository, CertificateRepository>();
+        services.AddScoped<IDeleteCertificateUC, DeleteCertificateUC>();
+        services.AddScoped<IFindCertificateByIdUC, FindCertificateByIdUC>();
         services.AddScoped<CertificateGeneratorService>();
 
 

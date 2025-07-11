@@ -15,13 +15,6 @@ ICertificateReadRepository, ICertificateWriteRepository
         return await _context.Certificates.ToListAsync();
     }
 
-    public async Task<Certificate?> FindByIdWithRelationsAsync(long id)
-    {
-        return await _context.Certificates
-            .Include(c => c.User)
-            .Include(c => c.Activity)
-            .FirstOrDefaultAsync(c => c.Id == id);
-    }
 
     public async Task<IEnumerable<Certificate>> FindByActivityIdAsync(long activityId)
     {
@@ -46,10 +39,11 @@ ICertificateReadRepository, ICertificateWriteRepository
         return await _context.Set<Certificate>().FirstOrDefaultAsync(e => e.Name == name);
     }
 
-    public async Task<Certificate?> FindByUserIdAndActivityIdAsync(long userId, long activityId)
+    public async Task<IEnumerable<Certificate?>> FindByUserIdAndActivityIdAsync(long userId, long activityId)
     {
         return await _context.Certificates
-        .FirstOrDefaultAsync(i => i.UserId == userId && i.ActivityId == activityId);
+        .Where(i => i.UserId == userId && i.ActivityId == activityId)
+        .ToListAsync();
     }
 
     public async Task<IEnumerable<Certificate>> FindByUserIdAsync(long userId)
