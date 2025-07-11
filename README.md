@@ -8,7 +8,10 @@ MyEvents é um sistema web robusto e escalável para gerenciamento completo de e
 - Clean Architecture
 - Unit of Work
 - PostgreSQL
+- EntityFramework
 - FluentMigrator
+- FluentValidator
+- JWT (JSON Web Tokens)
 
 
 ## Estrura do Projeto
