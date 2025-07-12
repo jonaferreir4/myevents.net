@@ -34,7 +34,7 @@ public class RegisterSponsorUC(
 
         if (@event.OrganizerId != organizerId)
         {
-             throw new UnauthorizedAccessException("You are not authorized to delete this Sponsor.");
+             throw new UnauthorizedAccessException("You are not authorized to register this Sponsor.");
         }
 
         // Map request to Sponsor entity

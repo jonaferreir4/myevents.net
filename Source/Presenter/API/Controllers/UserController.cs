@@ -36,7 +36,7 @@ public sealed class UserController(TokenService service): ControllerBase
         var result = await uc.LoginUser(request);
         var token = service.GenerateJwtToken(result);
 
-        var response = new TokenResponse(result.Id, token);
+        var response = new TokenResponse(token);
         return Ok(response);
     }
 
